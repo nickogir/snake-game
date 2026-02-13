@@ -15,6 +15,11 @@ const restartBtn = document.getElementById("restart");
   const tileCount = 20;
   const initialSpeedMs = 130;
   const minSpeedMs = 65;
+  const trackEvent = (name, params) => {
+    if (typeof window.gtag === "function") {
+      window.gtag("event", name, params || {});
+    }
+  };
 
   const scene = new THREE.Scene();
   scene.background = new THREE.Color(0x111825);
@@ -212,6 +217,7 @@ const restartBtn = document.getElementById("restart");
     isGameOver = true;
     isRunning = false;
     stopLoop();
+    trackEvent("game_over", { score });
     statusEl.textContent = `Game over. Final score: ${score}. Press SPACE or Restart to play again.`;
     statusEl.classList.add("game-over");
     render();
@@ -240,6 +246,7 @@ const restartBtn = document.getElementById("restart");
       scoreEl.textContent = String(score);
       food = randomFoodPosition();
       playEatSound();
+      trackEvent("food_eaten", { score });
 
       if (speedMs > minSpeedMs) {
         speedMs -= 3;
@@ -271,6 +278,7 @@ const restartBtn = document.getElementById("restart");
     nextDirection = inputDirection;
     if (!isRunning) {
       isRunning = true;
+      trackEvent("game_start", { method: "direction_key" });
       statusEl.textContent = "";
       startLoop();
     }
@@ -288,6 +296,7 @@ const restartBtn = document.getElementById("restart");
       }
       if (!isRunning) {
         isRunning = true;
+        trackEvent("game_start", { method: "space" });
         statusEl.textContent = "";
         startLoop();
       }
