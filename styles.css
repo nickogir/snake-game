@@ -138,6 +138,13 @@ body {
   margin: 0;
 }
 
+.intro {
+  margin: 0 0 12px;
+  color: #c9d7f7;
+  font-size: 0.94rem;
+  line-height: 1.4;
+}
+
 #game {
   width: 100%;
   aspect-ratio: 1 / 1;
@@ -192,10 +199,36 @@ button:hover {
   font-weight: 700;
 }
 
+.content-block {
+  margin-top: 12px;
+  padding-top: 10px;
+  border-top: 1px solid #2a3650;
+}
+
+.content-block h2 {
+  margin: 0 0 6px;
+  font-size: 1rem;
+  color: #d9e6ff;
+}
+
+.content-block p {
+  margin: 0;
+  font-size: 0.9rem;
+  line-height: 1.45;
+  color: #bccced;
+}
+
+.updated {
+  margin: 12px 0 0;
+  font-size: 0.8rem;
+  color: #9fb1d8;
+}
+
 .site-footer {
   display: flex;
   justify-content: center;
   gap: 14px;
+  flex-wrap: wrap;
   font-size: 0.85rem;
   color: #b7c6ea;
 }
