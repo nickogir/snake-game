@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Snake</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="page-shell">
+      <section class="content-row">
+        <section class="ad-slot ad-side ad-left" aria-label="Left commercial banner space">
+          <article class="dummy-ad">
+            <p class="ad-tag">Sponsored</p>
+            <h3>Boost Your Focus</h3>
+            <p>Noise-canceling earbuds with 40h battery life.</p>
+            <a href="#" aria-label="Shop now">Shop Now</a>
+          </article>
+        </section>
+
+        <section class="game-shell">
+          <header class="hud">
+            <h1 class="title">SNAKE</h1>
+            <div class="scores">
+              <p>Score: <span id="score">0</span></p>
+              <p>Best: <span id="best-score">0</span></p>
+            </div>
+          </header>
+          <div id="game" aria-label="Snake game"></div>
+          <section class="controls">
+            <p>Move: Arrow keys/WASD. Start/Restart: SPACE</p>
+            <button id="restart" type="button">Restart</button>
+          </section>
+          <p id="status" class="status">Press SPACE or any direction key to start</p>
+        </section>
+
+        <section class="ad-slot ad-side ad-right" aria-label="Right commercial banner space">
+          <article class="dummy-ad alt">
+            <p class="ad-tag">Sponsored</p>
+            <h3>Level Up Desk</h3>
+            <p>Ergonomic setup kits for coders and gamers.</p>
+            <a href="#" aria-label="Learn more">Learn More</a>
+          </article>
+        </section>
+      </section>
+    </main>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>
