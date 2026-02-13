@@ -220,6 +220,41 @@ button:hover {
   font-weight: 700;
 }
 
+.site-footer {
+  display: flex;
+  justify-content: center;
+  gap: 14px;
+  font-size: 0.85rem;
+  color: #b7c6ea;
+}
+
+.site-footer a {
+  color: #b7c6ea;
+  text-decoration: none;
+}
+
+.site-footer a:hover {
+  color: #f5f7ff;
+  text-decoration: underline;
+}
+
+.legal-shell {
+  width: min(92vw, 720px);
+  margin: 32px auto;
+  padding: 18px;
+  border: 1px solid #2e3b52;
+  border-radius: 12px;
+  background: color-mix(in oklab, var(--panel) 90%, black);
+}
+
+.legal-shell h1 {
+  margin-top: 0;
+}
+
+.legal-shell a {
+  color: #9bdcff;
+}
+
 @media (width <= 820px) {
   .content-row {
     grid-template-columns: 1fr;
