@@ -26,36 +26,20 @@
   </head>
   <body>
     <main class="page-shell">
-      <section class="content-row">
-        <section class="ad-slot ad-side ad-left" aria-label="Left commercial banner space">
-          <article class="dummy-ad placeholder">
-            <h3>Ad Space</h3>
-            <p>Reserved for a 160 x 600 display unit.</p>
-          </article>
+      <section class="game-shell">
+        <header class="hud">
+          <h1 class="title">SNAKE</h1>
+          <div class="scores">
+            <p>Score: <span id="score">0</span></p>
+            <p>Best: <span id="best-score">0</span></p>
+          </div>
+        </header>
+        <div id="game" aria-label="Snake game"></div>
+        <section class="controls">
+          <p>Move: Arrow keys/WASD. Start/Restart: SPACE</p>
+          <button id="restart" type="button">Restart</button>
         </section>
-
-        <section class="game-shell">
-          <header class="hud">
-            <h1 class="title">SNAKE</h1>
-            <div class="scores">
-              <p>Score: <span id="score">0</span></p>
-              <p>Best: <span id="best-score">0</span></p>
-            </div>
-          </header>
-          <div id="game" aria-label="Snake game"></div>
-          <section class="controls">
-            <p>Move: Arrow keys/WASD. Start/Restart: SPACE</p>
-            <button id="restart" type="button">Restart</button>
-          </section>
-          <p id="status" class="status">Press SPACE or any direction key to start</p>
-        </section>
-
-        <section class="ad-slot ad-side ad-right" aria-label="Right commercial banner space">
-          <article class="dummy-ad placeholder alt">
-            <h3>Ad Space</h3>
-            <p>Reserved for a 160 x 600 display unit.</p>
-          </article>
-        </section>
+        <p id="status" class="status">Press SPACE or any direction key to start</p>
       </section>
       <footer class="site-footer">
         <a href="./how-to-play.html">How to Play</a>
