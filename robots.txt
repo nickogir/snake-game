@@ -2,3 +2,4 @@ User-agent: *
 Allow: /
 
 Sitemap: https://nickogir.github.io/snake-game/sitemap.xml
+Sitemap: https://nickogir.github.io/snake-game/sitemap-pages.xml
