@@ -3,6 +3,11 @@ const scoreEl = document.getElementById("score");
 const bestScoreEl = document.getElementById("best-score");
 const statusEl = document.getElementById("status");
 const restartBtn = document.getElementById("restart");
+const startOverlayEl = document.getElementById("start-overlay");
+
+if (!gameRoot || !scoreEl || !bestScoreEl || !statusEl || !restartBtn) {
+  throw new Error("Snake UI failed to initialize: missing required DOM elements.");
+}
 
 (function bootstrap(threeRef) {
   if (!threeRef) {
@@ -66,14 +71,40 @@ const restartBtn = document.getElementById("restart");
   let nextDirection;
   let food;
   let score;
-  let bestScore = Number(localStorage.getItem("snake-best-score") || 0);
+  let bestScore = 0;
   let gameLoop = null;
   let isRunning = false;
   let isGameOver = false;
   let speedMs = initialSpeedMs;
   let audioCtx = null;
 
+  try {
+    bestScore = Number(localStorage.getItem("snake-best-score") || 0);
+  } catch (error) {
+    bestScore = 0;
+  }
   bestScoreEl.textContent = String(bestScore);
+
+  function setStartOverlayVisible(isVisible) {
+    if (!startOverlayEl) {
+      return;
+    }
+    startOverlayEl.classList.toggle("hidden", !isVisible);
+  }
+
+  function clearStatus() {
+    statusEl.textContent = "";
+    statusEl.classList.remove("game-over");
+  }
+
+  function showGameOverStatus(finalScore) {
+    statusEl.innerHTML = [
+      '<span class="status-line status-head">Game over</span>',
+      `<span class="status-line">Final score: ${finalScore}</span>`,
+      '<span class="status-line">Press SPACE or Restart to play again</span>',
+    ].join("");
+    statusEl.classList.add("game-over");
+  }
 
   function resizeRenderer() {
     const width = gameRoot.clientWidth;
@@ -170,8 +201,8 @@ const restartBtn = document.getElementById("restart");
     isGameOver = false;
     isRunning = false;
     scoreEl.textContent = "0";
-    statusEl.textContent = "Press SPACE or any direction key to start";
-    statusEl.classList.remove("game-over");
+    clearStatus();
+    setStartOverlayVisible(true);
     stopLoop();
     syncSnakeMeshes();
     syncFoodMesh();
@@ -218,8 +249,7 @@ const restartBtn = document.getElementById("restart");
     isRunning = false;
     stopLoop();
     trackEvent("game_over", { score });
-    statusEl.textContent = `Game over. Final score: ${score}. Press SPACE or Restart to play again.`;
-    statusEl.classList.add("game-over");
+    showGameOverStatus(score);
     render();
   }
 
@@ -255,7 +285,11 @@ const restartBtn = document.getElementById("restart");
 
       if (score > bestScore) {
         bestScore = score;
-        localStorage.setItem("snake-best-score", String(bestScore));
+        try {
+          localStorage.setItem("snake-best-score", String(bestScore));
+        } catch (error) {
+          // Ignore storage failures and keep session score functional.
+        }
         bestScoreEl.textContent = String(bestScore);
       }
     } else {
@@ -279,7 +313,8 @@ const restartBtn = document.getElementById("restart");
     if (!isRunning) {
       isRunning = true;
       trackEvent("game_start", { method: "direction_key" });
-      statusEl.textContent = "";
+      clearStatus();
+      setStartOverlayVisible(false);
       startLoop();
     }
   }
@@ -297,7 +332,8 @@ const restartBtn = document.getElementById("restart");
       if (!isRunning) {
         isRunning = true;
         trackEvent("game_start", { method: "space" });
-        statusEl.textContent = "";
+        clearStatus();
+        setStartOverlayVisible(false);
         startLoop();
       }
       return;

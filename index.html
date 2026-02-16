@@ -28,18 +28,26 @@
     <main class="page-shell">
       <section class="game-shell">
         <header class="hud">
-          <h1 class="title">SNAKE</h1>
-          <div class="scores">
-            <p>Score: <span id="score">0</span></p>
-            <p>Best: <span id="best-score">0</span></p>
+          <div class="top-row">
+            <a class="back-link" href="https://nickogir.github.io/">← Back to Arcade</a>
+            <h1 class="title">SNAKE</h1>
+            <span class="top-spacer" aria-hidden="true"></span>
+          </div>
+          <div class="hud-row">
+            <div class="scores">
+              <p>Score: <span id="score">0</span></p>
+              <p>Best: <span id="best-score">0</span></p>
+            </div>
+            <button id="restart" type="button">Restart</button>
           </div>
         </header>
-        <div id="game" aria-label="Snake game"></div>
+        <div id="game" aria-label="Snake game">
+          <div id="start-overlay" class="start-overlay">Press any key to start</div>
+          <p id="status" class="status status-overlay"></p>
+        </div>
         <section class="controls">
-          <p>Move: Arrow keys/WASD. Start/Restart: SPACE</p>
-          <button id="restart" type="button">Restart</button>
+          <p>← ↑ ↓ → or WASD to move</p>
         </section>
-        <p id="status" class="status">Press SPACE or any direction key to start</p>
       </section>
       <footer class="site-footer">
         <a href="./how-to-play.html">How to Play</a>
